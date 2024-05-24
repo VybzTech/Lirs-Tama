@@ -1,0 +1,245 @@
+initialValues: {
+      myFile: ''
+    },
+    onSubmit: () => {
+      console.log('Form submitted!')
+    }
+  })
+
+  const validationRules = Yup.object().shape({
+    myFile: Yup.mixed().required('required')
+      .test('fileFormat', 'Only PDF files are allowed', value => {
+        if (value) {
+          const supportedFormats = ['pdf'];
+          return supportedFormats.includes(value.name.split('.').pop());
+        }
+        return true;
+      })
+      .test('fileSize', 'File size must be less than 3MB', value => {
+        if (value) {
+          return value.size <= 3145728;
+        }
+        return true;
+      }),
+
+
+      <form onSubmit={formik.handleSubmit}>
+      <input type='file' name='myFile' accept='.pdf' onChange={handleChange}/>
+
+      <div>{(formik.errors.myFile) ? <p style={{color: 'red'}}>{formik.errors.myFile}</p> : null}</div>
+      <br/>
+      <button type='submit'>Submit Form</button>
+    </form> 
+
+
+    const handleChange = (e) => {
+  formik.setFieldValue('myFile', e.target.files[0]);
+};
+const MyForm = () => {
+  const validationRules = Yup.object().shape({
+    myFile: Yup.mixed().required('required')
+      .test('fileFormat', 'Only PDF files are allowed', value => {
+        if (value) {
+          const supportedFormats = ['pdf'];
+          return supportedFormats.includes(value.name.split('.').pop());
+        }
+        return true;
+      })
+      .test('fileSize', 'File size must not be more than 3MB', 
+      value => {
+        if (value) {
+          return value.size <= 3145728;
+        }
+        return true;
+      }),
+  })
+
+  const formik = useFormik({
+    initialValues: {
+      myFile: ''
+    },
+    onSubmit: () => {
+      console.log('Submitted')
+    },
+    validationSchema: validationRules,
+  })
+
+  const handleChange = (e) => {
+    formik.setFieldValue('myFile', e.target.files[0]);
+  };
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <input type='file' name='myFile' accept='.pdf' onChange={handleChange}/>
+
+      <div>{(formik.errors.myFile) ? <p style={{color: 'red'}}>{formik.errors.myFile}</p> : null}</div>
+      <br/>
+      <button type='submit'>Submit</button>
+    </form>
+  )
+}
+
+export default MyForm; 
+ 
+ 
+ 
+ 
+
+
+
+
+  {/* <button
+                  type="submit"
+                  // onClick={handleVerification}
+                  className="bg-blue-500 text-white rounded rounded-md px-5 py-4 w-full text-sm capitalize font-semibold my-5 transition-all ease duration-300 ease-in-out hover:bg-blue-700"
+                >
+                  verify details
+                </button> */}
+
+                {/* <Input
+          name="director1"
+          label="Director 1"
+          placeholder="e.g LA/TCC/000XXXXXXX"
+          errorMsg={Verrors?.director1}
+          err={Verrors?.director1 && Vtouched?.director1}
+        /> */}
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+  {/*  value={formValues.email}
+            onChange={handleChange}
+            className={formErrors.email && "input-error"}
+          />
+          {formErrors.email && (
+            <span className="error">{formErrors.email}</span>
+          )}
+          
+          .matches(
+/^([0]{1}|\+?[234]{3})([7-9]{1})([0|1]{1})([\d]{1})([\d]{7})$/g,
+    
+          */}
+
+
+ {/*
+                    // value={values.email}
+                    // onChange={handleChange}
+                    // onBlur={handleBlur}
+                    // className={errors.email && touched.email ? 
+                    // "input-error" : null */}
+
+              {/* <button
+                  type="submit"
+                  className={dirty && isValid ? "" : "disabled-btn"}
+                  disabled={!(dirty && isValid)}>
+                  Sign In
+                </button> */}
+              {/* <form action=""> */}
+
+              {/*  {Object.keys(formErrors).length === 0 && isSubmitting && (
+        <span className="success-msg">Signed in successfully</span>
+      )} */}
+              {/* <button disabled={!this.isFormValid}>verify </button> */}
+              {/* </form>
+
+*/}
+
+
+
+
+  // const validationSchema = Yup.object().shape({
+  //   name: Yup.string().required('Name is required'),
+  //   email: Yup.string().email('Invalid email').required('Email is required'),
+  //   password: Yup.string()
+  //     .min(6, 'Password must be at least 6 characters')
+  //     .required('Password is required'),
+  //   confirmPassword: Yup.string()
+  //     .oneOf([Yup.ref('password')], 'Passwords must match')
+  //     .required('Confirm Password is required'),
+  // });
+
+
+
+// .matches()
+    // .required('Please verify your 2nd Director TCC No'),
+    // password: Yup.string()
+    //   .min(6, 'Password must be at least 6 characters')
+    //   .required('Password is required'),
+    // confirmPassword: Yup.string()
+    //   .oneOf([Yup.ref('password')], 'Passwords must match')
+    //   .required('Confirm Password is required'),
+
+
+
+  //  const handleChange = (e) => {
+  //     const { name, value } = e.target;
+  //     setFormValues({ ...formValues, [name]: value });
+  //   };
+
+  // const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     setFormErrors(validate(formValues));
+  //     setIsSubmitting(true);
+  //   };
+
+  // const [formValues, setFormValues] = useState(intialValues);
+  // const [formErrors, setFormErrors] = useState({});
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // const validate = (values) => {
+  //     let errors = {};
+  //     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/ i;
+  //     if (!values.email) {
+  //       errors.email = "Cannot be blank";
+  //     } else if (!regex.test(values.email)) {
+  //       errors.email = "Invalid email format";
+  //     }
+  //     if (!values.password) {
+  //       errors.password = "Cannot be blank";
+  //     } else if (values.password.length < 4) {
+  //       errors.password = "Password must be more than 4 characters";
+  //     }
+  //     return errors;
+  //   };
+
+  // useEffect(() => {
+  //     if (Object.keys(formErrors).length === 0 && isSubmitting) {
+  //       submitForm();
+  //     }
+  //   }, [formErrors]);
+
+  /*
+  const validate = (values) => {
+  let errors = {};
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  if (!values.email) {
+    errors.email = "Email is required";
+  } else if (!regex.test(values.email)) {
+    errors.email = "Invalid Email";
+  }
+  if (!values.password) {
+    errors.password = "Password is required";
+  } else if (values.password.length < 4) {
+    errors.password = "Password too short";
+  }
+  return errors;
+};
+*/
+
+
+ // const {
+          //   values,
+          //   handleChange,
+          //   handleSubmit,
+          //   errors,
+          //   touched,
+          //   handleBlur,
+          //   isValid,
+          //   dirty,
+          // } = formik;
+

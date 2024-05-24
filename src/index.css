@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Rubik;
+  font-optical-sizing: auto;
+  font-style: normal;
+  src: url("./assets/fonts/Rubik/Rubik-VariableFont_wght.ttf");
+}
+:root {
+  --navwidth: 17vw;
+}
+
+* {
+  font-family: Rubik, sans-serif;
+  @apply m-0 p-0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+#app {
+  position: relative;
+}
+h1 {
+  @apply font-semibold;
+}
+
+#Navbar {
+  background-image: url("./assets/images/Bus.png");
+  min-width: calc(var(--navwidth) - 2vw); /*15vw */
+  width: var(--navwidth); /*17vw */
+  background-size: auto 100vh;
+  background-attachment: fixed;
+  z-index: 10;
+  @apply h-full bg-no-repeat top-0 left-0 fixed;
+  transition-delay: 0ms !important;
+}
+#Navbar::-webkit-scrollbar {
+  @apply hidden;
+}
+#Navbar:hover {
+  width: calc(var(--navwidth) + 35vw); /*52vw */
+}
+#Navbar h1 {
+  @apply text-[0.7rem]
+  md:text-sm
+  lg:text-[1rem] lg:leading-[1.4]
+  xl:text-[1.225rem] lg:leading-[1.6];
+}
+.navCont {
+  @apply hidden opacity-0;
+}
+#Navbar:hover .navCont {
+  @apply block opacity-100;
+}
+#Navbar:hover .Navs {
+  @apply mt-2;
+}
+#Navbar:hover .Navs .Nav {
+  @apply ml-0;
+  /* @apply ml-[-0.15rem]; */
+}
+
+.Nav > div > span {
+  -webkit-text-stroke: 0.2px #555;
+}
+.Nav:hover {
+  cursor: pointer;
+}
+.Nav:hover h3 {
+  @apply text-stone-900;
+}
+
+/* FORM STYLES */
+label {
+  -webkit-text-stroke: 0.3px #111;
+}
+input[type="file"]::-webkit-file-upload-button {
+  display: none;
+}
+input[type="file"]::file-selector-button {
+  display: none;
+}
+#NavContent.stick {
+  position: sticky;
+  top: -0.5rem;
+}
+.Navv.stick {
+  /* position: sticky; */
+}
+
+.disabled-btn {
+  cursor: not-allowed;
+  @apply bg-blue-400 text-gray-200 hover:bg-blue-400 text-white !important;
+}
+.headers {
+  text-transform: uppercase;
+  @apply mt-1 uppercase text-[1.7rem] leading-[1.2] md:leading-[2] md:text-[2rem] lg:text-[2.4rem];
+  /*  uppercase */
+}
+/* XTRA CLASSES */
+.flexMe {
+  @apply flex items-center;
+}
+.trans {
+  transition: width 250ms cubic-bezier(0.005, 0.92, 0.85, 1);
+}
+.textShade {
+  -webkit-text-stroke: 0.15px #5c5c5c55;
+}
+
+/* TABLET SIZE */
+@media screen and (min-width: 768px) {
+  :root {
+    --newWidth: 30%;
+  }
+  #Navbar {
+    min-width: 30vw;
+    width: var(--newWidth);
+    /* background-size: var(--newWidth) 100vh; */
+  }
+  #Navbar:hover {
+    width: var(--newWidth);
+  }
+  .navCont {
+    @apply block opacity-100;
+  }
+  #Navbar .Navs,
+  #Navbar:hover .Navs {
+    @apply mt-0 ml-0;
+  }
+  #Navbar:hover .Navs .Nav {
+    /* @apply ml-0; */
+    /* @apply ml-[-1rem]; */
+    /* @apply ml-[-0.1rem]; */
+  }
+}
+
+/* LAPTOP SIZE */
+@media screen and (min-width: 1024px) {
+  :root {
+    --lapWidth: 35%;
+  }
+  #Navbar {
+    width: var(--lapWidth);
+    /* background-size: var(--lapWidth) 100vh; */
+  }
+  #Navbar:hover {
+    width: var(--lapWidth);
+  }
+}
+
+/* LAPTOP SIZE */
+@media screen and (min-width: 1280px) {
+  :root {
+    --lapWidth: 37%;
+  }
+  #Navbar {
+    width: var(--lapWidth);
+    background-size: var(--lapWidth) 110vh;
+    /* background-size: var(--lapWidth) 100vh; */
+  }
+  #Navbar:hover {
+    width: var(--lapWidth);
+  }
+}
